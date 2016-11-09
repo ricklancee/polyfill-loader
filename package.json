@@ -1,0 +1,13 @@
+{
+  "name": "polyfiller",
+  "version": "0.1.0",
+  "description": "Polyfiller is a simple browser script to test and load polyfills dynamically. You write your own tests and add scripts to the polyfiller.",
+  "scripts": {
+    "build": "./node_modules/.bin/uglifyjs polyfiller.js --comments --mangle --output polyfiller.min.js"
+  },
+  "author": "Rick Lancee",
+  "license": "MIT",
+  "devDependencies": {
+    "uglify-js": "^2.7.4"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "polyfiller",
+  "main": "polyfiller.js",
+  "homepage": "https://github.com/ricklancee/polyfiller",
+  "authors": [
+    "Rick Lancee <@ricklancee>"
+  ],
+  "description": "A simple browser script to test and load polyfills dynamically",
+  "keywords": [
+    "polyfill",
+    "polyfills"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "fetch": "^1.0.0",
+    "promise-polyfill": "^6.0.2"
+  }
+}
