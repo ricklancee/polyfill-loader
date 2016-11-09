@@ -1,5 +1,5 @@
 # Polyfiller
-Polyfiller is a simple browser script to test and load polyfills dynamically. You write your own tests and add scripts to the polyfiller. 
+Polyfiller is a simple browser script to test and load polyfills asynchronously. You write your own tests and add scripts to the polyfiller. 
 
 Why this polyfiller? To reduce bandwith and loading times by only loading polyfills that are necessary. 
 
@@ -19,7 +19,7 @@ Include the script into your html.
 #### Basic usage
 
 In `polyfiller.test()` you can test if API's are supported, if they are not
-add them to the polyfiller to be loaded. Polyfills are loaded after `polyfiller.test()` has been executed.
+add them to the polyfiller to be loaded with `this.addPolyfill()` or `polyfiller.addPolyfill()`. Polyfills are loaded after `polyfiller.test()` has been executed.
 
 ```js
 polyfiller.test(function() {
@@ -39,10 +39,9 @@ window.addEventListener('polyfillsLoaded', function() {
 });
 ```
 
-#### Manually adding and loading polyfills
+#### Adding and loading polyfills
 
-You can add scripts to the polyfiller with the `polyfiller.addPolyfill()` method, and load the script whenever you want with the `polyfiller.load()` method. you can pass a success or fail callback to the load method, which are 
-called when the scripts are loaded, or failed to load.
+You can add scripts to the polyfiller with the `polyfiller.addPolyfill()` method, and load the script whenever you want with the `polyfiller.load()` method. You can also pass a success or fail callback to the load method, which are called when the scripts are loaded, or failed to load.
 
 ```js
 
@@ -59,7 +58,7 @@ polyfiller.load(function() {
   console.log('Done loading polyfills');
 }); 
 
-// Or listen to 'polyfillsLoaded' event to fire.
+// Or listen to 'polyfillsLoaded' event to fire; both are fired.
 window.addEventListener('polyfillsLoaded', function() {
   console.log('Done loading polyfills');
 });
