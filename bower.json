@@ -1,12 +1,15 @@
 {
   "name": "polyfiller",
   "main": "polyfiller.js",
+  "moduleType": "globals",
   "homepage": "https://github.com/ricklancee/polyfiller",
   "authors": [
-    "Rick Lancee <@ricklancee>"
+    "Rick Lancee"
   ],
-  "description": "A simple browser script to test and load polyfills dynamically",
+  "description": "A simple browser script to test and load polyfills asynchronously",
   "keywords": [
+    "async",
+    "loading",
     "polyfill",
     "polyfills"
   ],
@@ -19,6 +22,10 @@
     "test",
     "tests"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ricklancee/polyfiller.git"
+  },
   "devDependencies": {
     "fetch": "^1.0.0",
     "promise-polyfill": "^6.0.2"
