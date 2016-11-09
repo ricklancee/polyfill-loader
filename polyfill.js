@@ -1,6 +1,6 @@
 'use strict';
 
-window.polyfiller = (function () {
+window.polyfill = (function () {
   var polyFillsLoadedEvent = new CustomEvent('polyfillsLoaded', {
     bubbles: true
   });

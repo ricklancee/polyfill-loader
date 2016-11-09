@@ -12,21 +12,21 @@
     <script type="text/javascript" src="./bower_components/jasmine-core/lib/jasmine-core/jasmine.js"></script>
     <script type="text/javascript" src="./bower_components/jasmine-core/lib/jasmine-core/jasmine-html.js"></script>
     <script type="text/javascript" src="./bower_components/jasmine-core/lib/jasmine-core/boot.js"></script>
-    <script src="polyfiller.js"></script>
+    <script src="polyfill.js"></script>
     <script>
-      describe("Polyfiller", function() {
+      describe("polyfill", function() {
 
         it("should be in the global scope", function() {
-          expect(window.polyfiller).not.toBe(undefined);
+          expect(window.polyfill).not.toBe(undefined);
         });
 
         describe('loading polyfills', function() {
           var callbackFired = false;
 
           beforeEach(function(done) {
-            polyfiller.addPolyfill('./bower_components/promise-polyfill/promise.js');
+            polyfill.addPolyfill('./bower_components/promise-polyfill/promise.js');
 
-            polyfiller.load(function() {
+            polyfill.load(function() {
               callbackFired = true;
             });
 

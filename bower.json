@@ -1,8 +1,8 @@
 {
-  "name": "polyfiller",
-  "main": "polyfiller.js",
+  "name": "polyfill-loader",
+  "main": "polyfill.js",
   "moduleType": "globals",
-  "homepage": "https://github.com/ricklancee/polyfiller",
+  "homepage": "https://github.com/ricklancee/polyfill-loader",
   "authors": [
     "Rick Lancee"
   ],
@@ -23,7 +23,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/ricklancee/polyfiller.git"
+    "url": "git://github.com/ricklancee/polyfill-loader.git"
   },
   "devDependencies": {
     "fetch": "^1.0.0",
