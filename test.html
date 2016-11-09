@@ -10,25 +10,28 @@
 <body>
     <script src="polyfiller.js"></script>
     <script>
-    // window.polyfiller.addPolyfill('./bower_components/promise-polyfill/promise.js');
-    // window.polyfiller.addPolyfill('./bower_components/fetch/fetch.js');
-    // window.polyfiller.load();
+      // window.polyfiller.addPolyfill('./bower_components/promise-polyfill/promise.js');
+      // window.polyfiller.addPolyfill('./bower_components/fetch/fetch.js');
+      // window.polyfiller.load();
 
-    // window.polyfiller.addPolyfill([
-    //   './bower_components/promise-polyfill/promise.js',
-    //   './bower_components/fetch/fetch.js'
-    // ]);
-    // window.polyfiller.load();
+      // window.polyfiller.addPolyfill([
+      //   './bower_components/promise-polyfill/promise.js',
+      //   './bower_components/fetch/fetch.js'
+      // ]);
 
-    window.polyfiller.test(function() {
-      if (!('Promise' in window)) {
-        this.addPolyfill('./bower_components/promise-polyfill/promise.js');
-      }
+      // window.polyfiller.load(function() {
+      //   console.log('we are done');
+      // });
 
-      if (!('fetch' in window)) {
-        this.addPolyfill('./bower_components/fetch/fetch.js');
-      }
-    });
+      polyfiller.test(function() {
+        if (!('Promise' in window)) {
+          polyfiller.addPolyfill('./bower_components/promise-polyfill/promise.js');
+        }
+
+        if (!('fetch' in window)) {
+          polyfiller.addPolyfill('./bower_components/fetch/fetch.js');
+        }
+      });
 
       window.addEventListener('polyfillsLoaded', function() {
         console.log('Done loading polyfills');
