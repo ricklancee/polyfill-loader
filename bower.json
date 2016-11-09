@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "fetch": "^1.0.0",
-    "promise-polyfill": "^6.0.2"
+    "promise-polyfill": "^6.0.2",
+    "jasmine-core": "^2.5.2"
   }
 }

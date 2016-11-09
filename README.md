@@ -63,3 +63,7 @@ window.addEventListener('polyfillsLoaded', function() {
   console.log('Done loading polyfills');
 });
 ```
+
+### Tests
+Install dependencies with `bower install`  
+Run tests by opening  `test.html`
