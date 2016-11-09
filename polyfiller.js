@@ -33,18 +33,27 @@ window.polyfiller = (function () {
     });
   };
 
-  var load = function() {
+  var load = function(succesCB, failCB) {
     if (polyfillsLoaded) {
       return;
     }
     polyfillsLoaded = true;
 
     loadScripts(toBeLoadedPolyfills, function () {
+      if (succesCB) {
+        succesCB();
+      }
+
       requestAnimationFrame(function () {
         document.dispatchEvent(polyFillsLoadedEvent);
       });
     }, function () {
       polyfillsLoaded = false;
+
+      if (failCB) {
+        failCB();
+      }
+
       throw new Error('Failed to load required polyfills');
     });
   };
