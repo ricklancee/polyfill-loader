@@ -1,7 +1,7 @@
 # Polyfill loader
 Polyfill loader is a simple browser script to test and load polyfills asynchronously. You write your own tests and add scripts to the loader. 
 
-Why this polyfill loader? To reduce bandwith and loading times by only loading polyfills that are necessary. 
+Why this polyfill loader? To reduce bandwidth and loading times by only loading polyfills that are necessary. 
 
 # Usage
 Install the script via bower, or download the `polyfill.min.js` or `polyfill.js` file.
