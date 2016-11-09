@@ -12,19 +12,26 @@ window.polyfiller = (function () {
     var count = urls.length;
     var failed = false;
 
-    if (urls.length == 0) return succesCB();
+    if (urls.length == 0)
+      return succesCB();
 
     urls.forEach(function (url) {
       var script = document.createElement('script');
 
       script.onload = function () {
-        if (failed) return;
-        if (! --count) succesCB();
+        if (failed)
+          return;
+
+        if (! count--)
+          succesCB();
       };
 
       script.onerror = function () {
-        if (failed) return;
+        if (failed)
+          return;
+
         failCB();
+
         failed = true;
       };
 
@@ -37,6 +44,7 @@ window.polyfiller = (function () {
     if (polyfillsLoaded) {
       return;
     }
+
     polyfillsLoaded = true;
 
     loadScripts(toBeLoadedPolyfills, function () {
