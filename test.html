@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width">
+    <title></title>
+</head>
+<body>
+    <script src="polyfiller.js"></script>
+    <script>
+    // window.polyfiller.addPolyfill('./bower_components/promise-polyfill/promise.js');
+    // window.polyfiller.addPolyfill('./bower_components/fetch/fetch.js');
+    // window.polyfiller.load();
+
+    // window.polyfiller.addPolyfill([
+    //   './bower_components/promise-polyfill/promise.js',
+    //   './bower_components/fetch/fetch.js'
+    // ]);
+    // window.polyfiller.load();
+
+    window.polyfiller.test(function() {
+      if (!('Promise' in window)) {
+        this.addPolyfill('./bower_components/promise-polyfill/promise.js');
+      }
+
+      if (!('fetch' in window)) {
+        this.addPolyfill('./bower_components/fetch/fetch.js');
+      }
+    });
+
+      window.addEventListener('polyfillsLoaded', function() {
+        console.log('Done loading polyfills');
+      });
+    </script>
+</body>
+</html>
