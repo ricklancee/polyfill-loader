@@ -4,7 +4,7 @@ Polyfiller is a simple browser script to test and load polyfills asynchronously.
 Why this polyfiller? To reduce bandwith and loading times by only loading polyfills that are necessary. 
 
 # Usage
-Install the script via bower (not published, yet), or download the `polyfiller.min.js` or `polyfiller.js` file.
+Install the script via bower, or download the `polyfiller.min.js` or `polyfiller.js` file.
 
 ```
 bower install polyfiller
