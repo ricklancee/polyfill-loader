@@ -12,23 +12,27 @@ window.polyfiller = (function () {
     var count = urls.length;
     var failed = false;
 
-    if (urls.length == 0)
+    if (urls.length == 0) {
       return succesCB();
+    }
 
     urls.forEach(function (url) {
       var script = document.createElement('script');
 
       script.onload = function () {
-        if (failed)
+        if (failed) {
           return;
+        }
 
-        if (! count--)
+        if (! --count) {
           succesCB();
+        }
       };
 
       script.onerror = function () {
-        if (failed)
+        if (failed) {
           return;
+        }
 
         failCB();
 
@@ -48,11 +52,10 @@ window.polyfiller = (function () {
     polyfillsLoaded = true;
 
     loadScripts(toBeLoadedPolyfills, function () {
-      if (succesCB) {
-        succesCB();
-      }
-
       requestAnimationFrame(function () {
+        if (succesCB) {
+          succesCB();
+        }
         document.dispatchEvent(polyFillsLoadedEvent);
       });
     }, function () {
