@@ -16,6 +16,25 @@
     <script>
       describe("polyfill", function() {
 
+        // Reset the script on each test.
+        beforeEach(function(done) {
+          document.querySelector('script[src="polyfill.js"]').remove();
+          delete window.polyfill;
+          var script = document.createElement('script');
+
+          script.onload = function () {
+            done();
+          };
+
+          script.src = 'polyfill.js';
+          document.head.insertBefore(script, document.head.firstChild);
+
+          var polyScript = document.querySelector('script[src="./bower_components/promise-polyfill/promise.js"]');
+          if (polyScript) {
+            polyScript.remove();
+          }
+        });
+
         it("should be in the global scope", function() {
           expect(window.polyfill).not.toBe(undefined);
         });
@@ -27,10 +46,12 @@
             polyfill.addPolyfill('./bower_components/promise-polyfill/promise.js');
 
             polyfill.load(function() {
+              console.log('fire load cb');
               callbackFired = true;
             });
 
             window.addEventListener('polyfillsLoaded', function() {
+              console.log('fire load event');
               done();
             });
           });
@@ -41,6 +62,66 @@
             expect(callbackFired).toBe(true);
           });
         });
+
+        describe('loading delayed polyfills', function() {
+          var callbackFired = false;
+          var eventDelayed = false;
+          var delayed = false;
+
+          beforeEach(function(done) {
+            polyfill.addPolyfill('./bower_components/promise-polyfill/promise.js');
+
+            polyfill.load(function() {
+              console.log('fire delayed load cb');
+              callbackFired = true;
+
+
+              polyfill.delayEvent();
+
+              setTimeout(function() {
+                polyfill.fireEvent();
+                delayed = true;
+
+              }, 500);
+            });
+
+            window.addEventListener('polyfillsLoaded', function() {
+              console.log('fire delayed load event');
+              eventDelayed = true;
+              done();
+            });
+          });
+
+          // Very bad way of testing this.
+          it('should be able to delay the loaded event', function() {
+            expect(document.querySelector('script[src="./bower_components/promise-polyfill/promise.js"]'))
+              .not.toBe(undefined);
+            expect(callbackFired).toBe(true);
+            expect(delayed).toBe(true);
+            expect(eventDelayed).toBe(true);
+          });
+        });
+
+        describe('test()', function() {
+          var eventFired = false;
+          beforeEach(function(done) {
+            polyfill.test(function() {
+              polyfill.addPolyfill('./bower_components/promise-polyfill/promise.js');
+            });
+
+            window.addEventListener('polyfillsLoaded', function() {
+              console.log('fire test() load event');
+              eventFired = true;
+              done();
+            });
+          });
+          it('should be able fire the loaded event', function() {
+            expect(document.querySelector('script[src="./bower_components/promise-polyfill/promise.js"]'))
+              .not.toBe(undefined);
+            expect(eventFired).toBe(true);
+          });
+        });
+
       });
     </script>
 </body>

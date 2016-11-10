@@ -7,6 +7,7 @@ window.polyfill = (function () {
 
   var polyfillsLoaded = false;
   var toBeLoadedPolyfills = [];
+  var shouldDelayEvent = false;
 
   var loadScripts = function loadScripts(urls, succesCB, failCB) {
     var count = urls.length;
@@ -44,6 +45,12 @@ window.polyfill = (function () {
     });
   };
 
+  var fireEvent = function() {
+    requestAnimationFrame(function () {
+      document.dispatchEvent(polyFillsLoadedEvent);
+    });
+  };
+
   var load = function(succesCB, failCB) {
     if (polyfillsLoaded) {
       return;
@@ -52,12 +59,13 @@ window.polyfill = (function () {
     polyfillsLoaded = true;
 
     loadScripts(toBeLoadedPolyfills, function () {
-      requestAnimationFrame(function () {
-        if (succesCB) {
-          succesCB();
-        }
-        document.dispatchEvent(polyFillsLoadedEvent);
-      });
+      if (succesCB) {
+        succesCB();
+      }
+
+      if (!shouldDelayEvent) {
+        fireEvent();
+      }
     }, function () {
       polyfillsLoaded = false;
 
@@ -67,6 +75,10 @@ window.polyfill = (function () {
 
       throw new Error('Failed to load required polyfills');
     });
+  };
+
+  var delayEvent = function() {
+    shouldDelayEvent = true;
   };
 
   var addPolyfill = function(url) {
@@ -80,6 +92,8 @@ window.polyfill = (function () {
   };
 
   return {
+    delayEvent: delayEvent,
+    fireEvent: fireEvent,
     load: load,
     addPolyfill: addPolyfill,
     test: function(tests) {
