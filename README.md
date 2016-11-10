@@ -64,6 +64,39 @@ window.addEventListener('polyfillsLoaded', function() {
 });
 ```
 
+#### Delaying the polyfillsLoaded and fire it manually
+
+In some cases when a loading a polyfill script it has to load it's own scripts -- like the polyfills for webcomponents.js. Therefor you might want to wait for those scripts to load, before fireing the polyfillsLoadedEvent. Which can be done like so:
+
+```js
+var waitForWebcomponents = false;
+
+if (!('registerElement' in document)) {
+  polyfills.addPolyfill('./bower_components/webcomponentsjs/CustomElements.js');
+  waitForWebcomponents = true;
+}
+
+polyfills.load(function() {
+  if (waitForWebcomponents) {
+    
+    // The the polyfill loader to delay the event to later
+    // fire it manually.
+    polyfills.delayEvent();
+
+    // Wait for web components to be ready
+    window.addEventListener('WebComponentsReady', function() {
+    
+      // And fire the event manually.
+      polyfills.fireEvent();
+    });
+  }
+});
+
+window.addEventListener('polyfillsLoaded', function() {
+  console.log('Done loading polyfills');
+});
+```
+
 ### Tests
 Install dependencies with `bower install`  
 Run tests by opening  `test.html`
